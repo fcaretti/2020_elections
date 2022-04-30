@@ -76,8 +76,6 @@ def train_naive_bayes(freqs, train_x, train_y):
         else:
             # increment the number of negative words by the count for this (word,label) pair
             N_neg += freqs[pair]
-    # Calculate D, the number of documents
-    D = len(train_y)
     # Calculate D_pos, the number of positive documents
     D_pos = (train_y==1).sum()
     # Calculate D_neg, the number of negative documents
@@ -149,6 +147,13 @@ def average_log_posterior(tweets, logprior, loglikelihood):
     average=average/len(tweets)
     return average
 
+def count_positive_negative(tweets, logprior, loglikelihood):
+    count=0
+    for tweet in tweets:
+        if naive_bayes_predict(tweet,logprior,loglikelihood)>0:
+            count+=1
+    return count,(len(tweets)-count)
+
 
 def average_posterior(tweets, logprior, loglikelihood):
     average=0
@@ -158,3 +163,12 @@ def average_posterior(tweets, logprior, loglikelihood):
         print(a)
     average=average/len(tweets)
     return average
+
+def divide_pos_neg(tweets, positive_tweets, negative_tweets, logprior, loglikelihood):
+    for tweet in tweets:
+        a=naive_bayes_predict(tweet, logprior, loglikelihood)
+        if a>0:
+            positive_tweets.append(tweet)
+        if a<0:
+            negative_tweets.append(tweet)
+    return positive_tweets, negative_tweets
