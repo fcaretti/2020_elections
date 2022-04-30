@@ -15,4 +15,6 @@ In the second part, a sentiment analysis NB has been trained on the standard twi
 
 Using the sentiment analysis of part 2, tweets referring to both candidates have been split into positive and negative and then I tried to infer who each tweet in the test set is referring to. Not much improvement unfortunately. The idea behind this last attemp was that maybe some words are present in positive tweets about Trump and negative about Biden, for instance "maga".
 
-In the future, I may try a more complex model, but the point of the analysis was exactly to find relations between single words.
+In the future, W may try a more complex model, but the point of the analysis was exactly to find relations between single words.
+
+Written with Francesco Marengo
